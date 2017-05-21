@@ -4,6 +4,7 @@
  * @flow
  */
 
+
 import React, { Component } from 'react';
 import {
 	AppRegistry,
@@ -11,8 +12,12 @@ import {
 	Text,
 	View,
 	WebView,
-	ListView
+	ListView,
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
+
+
 
 export default class wpapidemo extends Component {
 	constructor(props) {
@@ -24,6 +29,10 @@ export default class wpapidemo extends Component {
 			loading: true,
 			dataSource: ds.cloneWithRows(['row 1', 'row 2']),
 		};
+	}
+
+	_onPressButton(str) {
+		console.log("You tapped " + str);
 	}
 
 	async componentDidMount() {
@@ -47,7 +56,7 @@ export default class wpapidemo extends Component {
 
 		return (
 			<View style={styles.container}>
-				<ListView style={styles.theweb} dataSource={this.state.dataSource} renderRow={(rowData) => <Text style={styles.row}>{rowData}</Text>} />
+			<ListView style={styles.theweb} dataSource={this.state.dataSource} renderRow={(rowData) => <Text style={styles.row} onPress={() => this._onPressButton(rowData)}>{rowData}</Text>} />
 			</View>
 		);
 	}
